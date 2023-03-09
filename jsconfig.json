@@ -1,7 +1,10 @@
 {
   "compilerOptions": {
+    "jsx": "react-jsx",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "~@svgs/*": ["./public/assets/svgs/*"],
+      "~@images/*": ["./public/assets/images/*"]
     }
   }
 }
