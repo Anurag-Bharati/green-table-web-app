@@ -1,0 +1,9 @@
+.wrapper {
+  &[data-ring] {
+    box-shadow: 0 0 0 0.9em #94d82d, 0 0 0 1.05em transparent, 0 0 0 1.05em white;
+    transition: box-shadow 0.3s ease-out;
+    &:hover {
+      box-shadow: 0 0 0 1px transparent, 0 0 0 0.9em #c0eb75, 0 0 0 1.05em white;
+    }
+  }
+}
