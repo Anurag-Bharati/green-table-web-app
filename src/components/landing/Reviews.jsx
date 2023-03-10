@@ -1,6 +1,18 @@
+"use client";
+
 import WaveBottom from "@svgs/inline/wave-bottom.svg";
 import Bean from "@svgs/inline/bean.svg";
 import ArrowUp from "@svgs/inline/arrow-up.svg";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Autoplay, Pagination, EffectCards } from "swiper";
+
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/effect-cards";
+
+SwiperCore.use([Autoplay, Pagination, EffectCards]);
+
 const Reviews = () => {
   return (
     <section className="relative px-[10%] pb-[6em]">
@@ -16,13 +28,46 @@ const Reviews = () => {
             <span className="text-amber-400">ignites</span> our passion at X
           </p>
         </header>
-        <div className="flex items-start flex-col sm:flex-row m-0 sm:mx-auto">
-          <div className="relative w-[40%] self-baseline mr-10 -ml-8">
+        <div className="flex items-start flex-row sm:flex-row m-0 sm:mx-auto">
+          <div className="w-1/2 absolute md:relative md:w-[40%] self-baseline mr-10 -ml-8">
             <Bean />
           </div>
+          <div className="w-full md:w-1/2 md:translate-x-20 rounded-3xl review">
+            <Swiper
+              autoplay={{
+                delay: 4000,
+                disableOnInteraction: false,
+              }}
+              pagination={{
+                clickable: true,
+              }}
+              effect="cards"
+              style={{
+                "--swiper-navigation-size": "20px",
+                "--swiper-pagination-color": "#c0eb75",
+                "--swiper-pagination-bullet-width": "16px",
+                "--swiper-pagination-bullet-height": "16px",
+              }}
+            >
+              <SwiperSlide>
+                <img
+                  src="https://www.bu.edu/questrom/files/2018/10/Four-Star-Reviews-Daniella-Kupor.jpg"
+                  alt="Image 1"
+                  className="w-full h-auto object-cover"
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img
+                  src="https://exclusive.multibriefs.com/images/exclusive/0513onlinereview.jpg"
+                  alt="Image 1"
+                  className="w-full h-auto object-cover"
+                />
+              </SwiperSlide>
+            </Swiper>
+          </div>
         </div>
-        <div className="h-20">{/* REVIEW GLIDER */}</div>
-        <div>
+
+        <div className="hidden md:block">
           <div className="relative pb-4">
             <ArrowUp className="absolute bottom-4 left-[20%] w-48" />
           </div>

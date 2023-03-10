@@ -76,3 +76,29 @@ div {
 .letter-spacing {
   letter-spacing: 0.05em;
 }
+.review .swiper-slide {
+  border-radius: 40px !important;
+}
+.review .swiper-slide img {
+  width: auto;
+  height: 100%;
+  object-fit: contain;
+}
+.review .swiper-pagination {
+  text-align: center;
+}
+.review .swiper-pagination-bullet-active {
+  width: 30px !important;
+  border-radius: 12px !important;
+  transition: all ease-out 300ms !important;
+}
+
+.review .swiper-pagination {
+  transform: translateY(250%) !important;
+}
+
+@media (min-width: 768px) {
+  .review .swiper-pagination {
+    text-align: left !important;
+  }
+}

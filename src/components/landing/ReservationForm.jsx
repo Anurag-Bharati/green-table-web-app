@@ -1,4 +1,3 @@
-"use client";
 import styles from "@/styles/landing/reservation_form.module.scss";
 import { BiCalendar, BiChevronDown, BiTime, BiUser } from "react-icons/bi";
 
