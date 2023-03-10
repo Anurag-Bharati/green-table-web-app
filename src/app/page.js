@@ -1,3 +1,9 @@
+import Reservation from "@/components/landing/Reservation";
+
 export default function Home() {
-  return <main></main>;
+  return (
+    <main>
+      <Reservation />
+    </main>
+  );
 }

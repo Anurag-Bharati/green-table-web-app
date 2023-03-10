@@ -1,0 +1,32 @@
+.arrowDown {
+  position: relative;
+  padding-bottom: 1em;
+  svg {
+    vertical-align: middle;
+    position: absolute;
+    fill: white;
+    right: -12em;
+    bottom: 0em;
+    width: 12em;
+  }
+}
+
+.patternWrapper {
+  object-fit: cover;
+  svg {
+    position: absolute;
+    opacity: 0.8;
+  }
+  svg:first-of-type {
+    top: 0;
+    height: 350px;
+    width: auto;
+    left: 0;
+  }
+  svg:last-of-type {
+    right: 0;
+    bottom: 2em;
+    height: 240px;
+    width: auto;
+  }
+}
