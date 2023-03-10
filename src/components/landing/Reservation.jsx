@@ -1,6 +1,6 @@
-import ReservePatternL from "public/assets/svgs/inline/reserve-pattern-l.svg";
-import ReservePatternR from "public/assets/svgs/inline/reserve-pattern-r.svg";
-import ArrowDown from "public/assets/svgs/inline/arrow-down.svg";
+import ReservePatternL from "@svgs/inline/reserve-pattern-l.svg";
+import ReservePatternR from "@svgs/inline/reserve-pattern-r.svg";
+import ArrowDown from "@svgs/inline/arrow-down.svg";
 import styles from "@/styles/landing/reservation.module.scss";
 import ReservationForm from "./ReservationForm";
 const Reservation = () => {
