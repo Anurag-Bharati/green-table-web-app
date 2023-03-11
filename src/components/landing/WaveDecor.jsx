@@ -5,7 +5,7 @@ import KnifeSvg from "@svgs/inline/knife.svg";
 
 const WaveDecor = () => {
   return (
-    <div className="wave-decoration relative ">
+    <div className="wave-decoration relative">
       <WaveSvg className="fill-[#eeeeee]" />
       <div className="absolute bottom-[2em] left-0 right-0 flex justify-center">
         <ForkSvg className="w-[4em] mx-1" />

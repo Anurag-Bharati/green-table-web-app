@@ -1,15 +1,15 @@
 import Cta from "@/components/landing/Cta";
 import Reservation from "@/components/landing/Reservation";
 import Reviews from "@/components/landing/Reviews";
-import WaveDecor from "@/components/landing/WaveDecor";
+import Services from "@/components/landing/Services";
 
 export default function Home() {
   return (
     <main>
+      <Services />
       <Reviews />
       <Reservation />
       <Cta />
-      <WaveDecor />
     </main>
   );
 }
