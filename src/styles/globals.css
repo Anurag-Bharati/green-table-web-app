@@ -30,6 +30,10 @@
   background: var(--select-bg);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   text-rendering: optimizeLegibility;
   font-smooth: antialiased;
