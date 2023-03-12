@@ -7,7 +7,7 @@ import ReservationArt from "@svgs/art/reservation.svg";
 import BellArt from "@svgs/art/bell.svg";
 const Services = () => {
   return (
-    <section id="services" className="relative">
+    <section id="services" className="relative overflow-x-hidden">
       <div className="pt-4 ">
         <header className="relative mx-auto text-center max-w-2xl px-4 mb-14 z-10">
           <h2 className="text-md uppercase font-bold bg-[#111] px-4 py-1 rounded-full inline-block text-clr letter-spacing select-none">
@@ -25,7 +25,7 @@ const Services = () => {
           >
             <a
               href="#"
-              accessibilityText="Dining & Buffet: Join us at the table"
+              aria-label="Dining & Buffet: Join us at the table"
               className="p-5 bg-zinc-700 rounded-xl hover:scale-95 outline-stone-600 hover:outline-dashed focus:outline-dashed  transition duration-150"
             >
               <div className="flex flex-col justify-between items-start h-full">
@@ -41,7 +41,7 @@ const Services = () => {
             </a>
             <a
               href="#"
-              accessibilityText="Order Takeaway: The Perfect Grab-n-go!"
+              aria-label="Order Takeaway: The Perfect Grab-n-go!"
               className="p-5 bg-[#fccc3e] rounded-xl hover:scale-95 outline-stone-600 hover:outline-dashed focus:outline-dashed  transition duration-150"
             >
               <div className="flex flex-col justify-between text-left h-full">
@@ -75,7 +75,7 @@ const Services = () => {
               >
                 <div className="text-xl pb-5">
                   <p className="flex-1">Reservations</p>
-                  <p className="whitespace-nowrap">17:00 - 23:00 PM</p>
+                  <p className="whitespace-nowrap">06:00 - 23:00 PM</p>
                 </div>
                 <ReservationArt className="h-auto w-full self-end" />
               </a>
