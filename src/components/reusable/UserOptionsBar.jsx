@@ -28,7 +28,7 @@ const UserOptionsBar = ({ session }) => {
         title={session.user.name}
       />
       <div
-        className={`absolute overflow-hidden top-12 min-w-[250px] w-fit left-0 md:left-auto md:top-16 shadow rounded-lg  border border-gray-200  whitespace-nowrap  z-[-1] transition ease-in-out duration-300 ${
+        className={`absolute overflow-hidden top-12 min-w-[250px] w-fit left-0 md:left-auto md:top-16 shadow rounded-lg  border border-gray-200  whitespace-nowrap bg-white z-[-1] transition ease-in-out duration-300 ${
           open ? "opacity-100 scale-100" : "opacity-0 scale-90 pointer-events-none"
         }`}
         onMouseLeave={() => setOpen(false)}
