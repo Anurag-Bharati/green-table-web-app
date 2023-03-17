@@ -101,6 +101,20 @@ div {
   transform: translateY(250%) !important;
 }
 
+.nice-scroll-bar::-webkit-scrollbar {
+  width: 0.25rem !important;
+  height: 0.75rem !important;
+}
+
+.nice-scroll-bar::-webkit-scrollbar-track {
+  background: #11111108;
+}
+
+.nice-scroll-bar::-webkit-scrollbar-thumb {
+  background: #ddd !important;
+  border-radius: 10px !important;
+}
+
 @media (min-width: 768px) {
   .review .swiper-pagination {
     text-align: left !important;

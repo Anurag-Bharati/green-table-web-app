@@ -17,7 +17,7 @@ const Reservation = () => {
         <p className="text-5xl font-bold text-clr-alt my-[0.5em]">We&apos;ve Got You Covered</p>
         <p className="text-2xl letter-spacing">
           Why wait for your meal? Book a table in advance and save time! You can make reservations
-          up to 3 months in advance.
+          up to a month in advance.
         </p>
         <p className="text-2xl letter-spacing py-2">We&apos;re excited to see you soon!</p>
         <div className={`hidden sm:block ${styles.arrowDown}`}>
