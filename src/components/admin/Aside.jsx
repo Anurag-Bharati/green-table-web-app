@@ -48,7 +48,7 @@ const Aside = () => {
                 asideExpanded || hovered ? "opacity-100 w-fit ml-2" : "opacity-0 w-0 ml-0 "
               }`}
             >
-              Menu
+              Navigation
             </p>
             {asideExpanded ? (
               <FiChevronsLeft className="text-2xl self-end pointer-events-none" />

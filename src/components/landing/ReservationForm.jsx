@@ -48,6 +48,7 @@ const ReservationForm = () => {
   };
   useEffect(() => {
     // scroll to reservation form
+    if (currentStep === 0) return;
     scrollToElement("reservation-form");
   }, [currentStep]);
   const handleUserInfoFormSubmit = () => {

@@ -2,7 +2,7 @@
 
 import { useRecoilState } from "recoil";
 import { navState } from "@/atoms";
-import { Dashboard, Reservations, Orders, Menu, Users } from "./contents";
+import { Dashboard, Reservations, Orders, Menu, Users, Report } from "./contents";
 
 const GetContent = ({ navState }) => {
   console.log(navState);
@@ -17,6 +17,8 @@ const GetContent = ({ navState }) => {
       return <Menu />;
     case 4:
       return <Users />;
+    case 5:
+      return <Report />;
     default:
       return <Dashboard />;
   }
