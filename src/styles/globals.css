@@ -115,6 +115,20 @@ div {
   border-radius: 10px !important;
 }
 
+.no-scroll-bar::-webkit-scrollbar {
+  width: 0.25rem !important;
+  height: 0.75rem !important;
+}
+
+.no-scroll-bar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.no-scroll-bar::-webkit-scrollbar-thumb {
+  background: transparent !important;
+  border-radius: 10px !important;
+}
+
 .no-select {
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;

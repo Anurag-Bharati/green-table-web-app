@@ -28,12 +28,12 @@ const UserOptionsBar = ({ session }) => {
         title={session.user.name}
       />
       <div
-        className={`absolute overflow-hidden top-12 min-w-[250px] w-fit left-0 md:left-auto md:top-16 shadow rounded-lg  border border-gray-200  whitespace-nowrap bg-white z-[-1] transition ease-in-out duration-300 ${
+        className={`absolute overflow-hidden top-12 min-w-[250px] w-fit -right-0  md:top-16 shadow rounded-lg  border border-gray-200  whitespace-nowrap bg-white z-[-1] transition ease-in-out duration-300 ${
           open ? "opacity-100 scale-100" : "opacity-0 scale-90 pointer-events-none"
         }`}
         onMouseLeave={() => setOpen(false)}
       >
-        <div className="max-w-7xl text-sm md:text-base">
+        <div className=" text-sm md:text-base">
           <ul className="py-0">
             <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer  flex items-center gap-2 border-b-2 border-gray-200">
               <div className="flex items-center gap-2">
