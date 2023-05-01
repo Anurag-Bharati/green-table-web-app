@@ -9,6 +9,7 @@ import {
   BiFoodMenu,
   BiShoppingBag,
   BiSolidDashboard,
+  BiSolidReport,
   BiSolidUserAccount,
 } from "react-icons/bi";
 
@@ -143,6 +144,24 @@ const Aside = () => {
               }`}
             >
               Users
+            </span>
+          </button>
+          <button
+            className={`p-2 rounded-md  hover:bg-zinc-600 flex font-medium ${
+              navSelected === 5 ? "bg-zinc-600" : ""
+            }`}
+            data-value="5"
+            onClick={changeNavState}
+          >
+            <BiSolidReport className="text-2xl" />
+            <span
+              className={`transition-all delay-75  ${
+                asideExpanded || hovered
+                  ? "opacity-100 w-fit ml-2"
+                  : "opacity-0 w-0 ml-0 pointer-events-none"
+              }`}
+            >
+              Reports
             </span>
           </button>
         </div>
