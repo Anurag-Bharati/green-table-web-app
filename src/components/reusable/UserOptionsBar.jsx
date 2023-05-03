@@ -1,6 +1,6 @@
 import { signOut } from "next-auth/react";
 import { useEffect, useState } from "react";
-import { BiCog, BiLogOutCircle } from "react-icons/bi";
+import { BiBook, BiCog, BiLogOutCircle, BiRocket } from "react-icons/bi";
 
 import InfiniteLinearProgressBar from "./InfiniteLinearProgressBar";
 import Image from "next/image";
@@ -58,9 +58,18 @@ const UserOptionsBar = ({ session }) => {
               <InfiniteLinearProgressBar small={true} />
             </li>
             <li className="px-4 py-2 hover:bg-gray-100 cursor-pointe flex items-center gap-2">
+              <BiBook className="w-5 h-5" />
+              <p>My Reservations</p>
+            </li>
+            <li className="px-4 py-2 hover:bg-gray-100 cursor-pointe flex items-center gap-2">
+              <BiRocket className="w-5 h-5" />
+              <p>Leaderboard</p>
+            </li>
+            <li className="px-4 py-2 hover:bg-gray-100 cursor-pointe flex items-center gap-2">
               <BiCog className="w-5 h-5" />
               <p>Settings</p>
             </li>
+
             <li
               className="px-4 py-2 hover:bg-gray-100 cursor-pointe flex items-center gap-2"
               onClick={signOut}

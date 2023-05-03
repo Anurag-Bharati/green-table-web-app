@@ -17,7 +17,13 @@ function AuthPage() {
     <section className="relative isolate text-white overflow-hidden p-4 min-h-screen mx-auto md:px-10 max-w-7xl lg:px-8 scroll-mt-32 flex flex-col justify-center items-center">
       <div className="-translate-y-1/2">
         <div className="p-4 flex flex-col justify-center items-center mb-9">
-          <Image src="/assets/svgs/logo/logo.svg" height={300} width={300} className="w-24 h-24" />
+          <Image
+            src="/assets/svgs/logo/logo.svg"
+            height={300}
+            width={300}
+            className="w-24 h-24"
+            alt="..."
+          />
           <h1 className="text-black text-2xl">GREENTABLE</h1>
         </div>
         <div className="p-4 bg-gray-200 rounded-xl">

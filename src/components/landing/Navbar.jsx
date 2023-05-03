@@ -3,14 +3,18 @@
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
-import { BiMenu } from "react-icons/bi";
+import { BiCart, BiMenu, BiSolidLeaf } from "react-icons/bi";
 import { FaUserCircle } from "react-icons/fa";
 import AvatarShimmer from "../reusable/AvatarShimmer";
 import UserOptionsBar from "../reusable/UserOptionsBar";
 import InfiniteCircularProgressBar from "../reusable/InfiniteCircularProgressBar";
+import { useState } from "react";
 
 const Navbar = () => {
   const { data: session, status } = useSession();
+  const [leaf, setLeaf] = useState({ count: 0, show: false });
+  const toggleLeafCount = () => setLeaf({ ...leaf, show: !leaf.show });
+  const toggleCart = () => null;
   return (
     <>
       <nav className=" fixed w-full bg-white border-gray-200 dark:bg-white z-50 border-b ">
@@ -28,12 +32,21 @@ const Navbar = () => {
             </span>
           </Link>
           <div className="flex md:order-2 gap-4 justify-center items-center">
+            <div className="relative p-2 cursor-pointer no-select" onClick={toggleCart}>
+              <span className="absolute px-1.5 font-bold text-sm bg-red-500  text-white right-0 top-0 rounded-full">
+                1
+              </span>
+              <BiCart className="inline-block text-3xl text-black" />
+            </div>
             <button
               type="button"
-              className="text-white  focus:ring-4 focus:outline-none  font-medium rounded-lg text-md px-4 py-2 text-center mr-3 md:mr-0 bg-[#94d82d] hover:scale-105 focus:ring-lime-300"
+              className="text-white  focus:ring-4 focus:outline-none  font-medium rounded-lg text-md px-2 py-0.5 text-center mr-3 md:mr-0 bg-[#94d82d] hover:scale-105 focus:ring-lime-300 items-center gap-2 flex"
+              onClick={toggleLeafCount}
             >
-              Reservations
+              <span className="text-white font-bold text-xl">{leaf.show ? leaf.count : "x"}</span>
+              <BiSolidLeaf className="inline-block text-xl text-white" />
             </button>
+
             <div className="relative rounded-full h-8 w-8" aria-label="Login/Sign-up">
               {status === "loading" && (
                 <div title="loading" className="w-full h-full cursor-progress">
@@ -103,7 +116,7 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
-      <div className="pb-[90px]"></div>
+      <div className="pb-[78px]"></div>
     </>
   );
 };

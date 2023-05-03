@@ -16,7 +16,7 @@ const Services = () => {
           <p className="text-5xl font-bold text-clr-alt my-[0.5em]">Why We Are The Top Faves!</p>
           <p className="text-2xl letter-spacing">
             Whether you&apos;re planning the party of the year, a cocktail masterclass or a simple
-            but stylish dinner with friends, you're in expert hands.
+            but stylish dinner with friends, you&apos;re in expert hands.
           </p>
         </header>
         <div>
