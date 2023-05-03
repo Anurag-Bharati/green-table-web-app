@@ -1,19 +1,38 @@
 "use client";
 
+import { cartState } from "@/atoms";
 import { useState } from "react";
-import { BiMinus, BiMinusCircle, BiPlus, BiPlusCircle } from "react-icons/bi";
+import { BiMinusCircle, BiPlusCircle } from "react-icons/bi";
+import { useRecoilState } from "recoil";
 
-const FoodCard = () => {
+const FoodCard = ({ food }) => {
   const [focus, setFocus] = useState(false);
   const [quantity, setQuantity] = useState(1);
+  const [cart, setCart] = useRecoilState(cartState);
+
+  const handleAddToCart = () => {
+    // find if the food is already in the cart
+    const index = cart.findIndex((item) => item.id === food.id);
+    if (index === -1) {
+      // if not, add it to the cart
+      setCart([...cart, { ...food, quantity }]);
+    } else {
+      // if yes, update the quantity
+      const item = { ...cart[index], quantity: cart[index].quantity + quantity };
+      const newCart = cart.filter((item) => item.id !== food.id);
+      newCart.push(item);
+      setCart(newCart);
+    }
+  };
   const increment = () => setQuantity(quantity + 1 > 10 ? 10 : quantity + 1);
   const decrement = () => setQuantity(quantity - 1 < 1 ? 1 : quantity - 1);
   const toggleFocus = () => setFocus(!focus);
+
   return (
     <div className="relative rounded-md flex  hover:border-[#11111188] border-transparent border-2  px-3 max-w-xl border-dashed cursor-pointer lg:w-1/2 no-select items-center">
       <img
-        src="https://i.imgur.com/kbpceNv.jpg"
-        alt="burger"
+        src={food.image}
+        alt={food.name}
         className="w-32  h-32 rounded-md object-cover opacity-80 hidden sm:block"
       />
       <div className="flex flex-col">
@@ -24,15 +43,15 @@ const FoodCard = () => {
             }`}
           >
             <h4 className="whitespace-nowrap  text-[#372b22] text-2xl font-bold border-b-2 border-b-[#11111188] border-dashed py-2">
-              Chicken Burger <span className="text-xl italic font-black float-right">$24</span>
+              {food.name}
+              <span className="text-xl italic font-black float-right">${food.price}</span>
             </h4>
             <p
               className={`line-clamp-3 transition-all duration-500 tracking-wide font-medium text-[#2b221c] ${
                 focus ? "h-[26px]" : "h-[78px]"
               }`}
             >
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto dolor quos explicabo
-              distinctio ipsa minima atque ?
+              {food.description}
             </p>
           </div>
         </div>
@@ -41,7 +60,10 @@ const FoodCard = () => {
             focus ? "opacity-100 scale-y-100 pb-4 h-[69px]" : "scale-y-0 opacity-0 pb-0 h-0 "
           }`}
         >
-          <button className="bg-[#372b22] text-white px-4 py-1 rounded-full uppercase font-bold text-sm">
+          <button
+            className="bg-[#372b22] text-white px-4 py-1 rounded-full uppercase font-bold text-sm"
+            onClick={handleAddToCart}
+          >
             Add to cart
           </button>
           <div className="flex items-center gap-2">
