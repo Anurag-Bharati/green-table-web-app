@@ -11,9 +11,11 @@ import InfiniteCircularProgressBar from "../reusable/InfiniteCircularProgressBar
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { cartOpenState, cartState } from "@/atoms";
+import { createOrder } from "@/services/order.service";
 
 const Navbar = () => {
   const { data: session, status } = useSession();
+  // common state
   const [leaf, setLeaf] = useState({ count: 0, show: false });
   const [cart, setCart] = useRecoilState(cartState);
   const [isCartOpen, setIsCartOpen] = useRecoilState(cartOpenState);
@@ -29,7 +31,11 @@ const Navbar = () => {
     setCart(updatedCart);
   };
 
-  const handleCheckout = () => {
+  // animate, checkout and clear cart
+  const handleCheckout = async () => {
+    const data = { orders: cart, user: session.user };
+    const [res, err] = await createOrder(data);
+    if (err) return;
     const animationTime = 3000;
     const afterDelay = 2000;
     setInitiateCheckout(true);
@@ -52,9 +58,8 @@ const Navbar = () => {
     document.body.style.overflow = isCartOpen ? "hidden" : "unset";
   }, [isCartOpen]);
 
-  // listen to cart state and if it changes update the cart count and save it to localstorage
+  // listen to cart state and if it changes update the total
   useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
     setTotal(cart.reduce((acc, item) => acc + item.price * item.quantity, 0));
   }, [cart]);
 
@@ -142,12 +147,12 @@ const Navbar = () => {
                 </a>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  href="/menu"
                   className="block py-2 pl-3 pr-4 text-gray-900 rounded  md:p-0 hover:text-[#94d82d]"
                 >
                   Menu
-                </a>
+                </Link>
               </li>
               <li>
                 <a

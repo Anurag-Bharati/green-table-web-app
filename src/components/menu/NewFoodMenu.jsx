@@ -3,14 +3,14 @@
 import FoodCard from "./FoodCard";
 const foods = [
   {
-    id: 1,
+    id: 0,
     name: "Chicken Burger",
     price: 200,
     image: "https://i.imgur.com/kbpceNv.jpg",
     description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
   },
   {
-    id: 2,
+    id: 1,
     name: "Veg Burger",
     price: 200,
     image: "https://i.imgur.com/kbpceNv.jpg",

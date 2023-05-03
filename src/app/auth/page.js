@@ -5,12 +5,17 @@ import Image from "next/image";
 import { useState } from "react";
 import { BiLoader } from "react-icons/bi";
 import { GrGoogle } from "react-icons/gr";
+import { useSearchParams } from "next/navigation";
 
 function AuthPage() {
+  const searchParams = useSearchParams();
   const [state, setState] = useState({ loading: false });
   const handleGoogleSignIn = async () => {
     setState({ loading: true });
-    await signIn("google", { callbackUrl: "http://localhost:3000" });
+    await signIn("google", {
+      callbackUrl: searchParams.get("callbackUrl") || "/",
+      redirect: false,
+    });
     setState({ loading: false });
   };
   return (
