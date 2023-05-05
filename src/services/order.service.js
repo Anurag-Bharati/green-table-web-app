@@ -1,5 +1,5 @@
 import { firestore } from "@/config/firebase/firebase";
-import { parse } from "date-fns";
+
 import {
   addDoc,
   collection,
@@ -22,7 +22,7 @@ const orderSchema = object({
     .shape({
       id: string().required(),
       name: string().required(),
-      image: string().required(),
+      image: string().nullable(),
       email: string().required().email(),
       phone: string().nullable(),
     })

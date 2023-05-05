@@ -16,11 +16,14 @@ import DateTimePicker from "../reusable/DateTimePicker";
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import scrollToElement from "@/utils/helper";
+import { createReservation } from "@/services/reservation.service";
 
 const steps = ["Find Table", "Guest Details", "Confirmation"];
 const partySize = ["1", "2", "3", "4", "5-7", "8+"];
 
 const ReservationForm = () => {
+  const { data: session, status } = useSession();
+
   const [currentStep, setCurrentStep] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({ partySize: "", date: null, time: "", diner: null });
@@ -37,8 +40,10 @@ const ReservationForm = () => {
     setFormData({ partySize: "", date: null, time: "", diner: null });
   };
 
-  const handleSubmitReservation = () => {
+  const handleSubmitReservation = async () => {
     // send data to backend
+    const [res, err] = await createReservation(formData);
+    if (err) return;
     increaseStep();
     let interval = setInterval(() => {
       handleReset();
@@ -51,13 +56,14 @@ const ReservationForm = () => {
     if (currentStep === 0) return;
     scrollToElement("reservation-form");
   }, [currentStep]);
+
   const handleUserInfoFormSubmit = () => {
     if (userInfoFormRef.current === null) return;
     if (userInfoFormRef?.current?.reportValidity()) {
       // get value from userInfoFormRef
       const fd = new FormData(userInfoFormRef.current);
       const diner = Object.fromEntries(fd.entries());
-      setFormData({ ...formData, diner });
+      setFormData({ ...formData, diner: { ...diner, id: session?.user?.id } });
       increaseStep();
     }
   };
@@ -137,7 +143,14 @@ const ReservationForm = () => {
             <HorizontalStepper steps={steps} currentStep={currentStep} />
           </div>
           {currentStep === 2 && <ConfirmReservation formData={formData} />}
-          {currentStep === 1 && <UserInfoForm userInfoFormRef={userInfoFormRef} form={formData} />}
+          {currentStep === 1 && (
+            <UserInfoForm
+              userInfoFormRef={userInfoFormRef}
+              form={formData}
+              session={session}
+              status={status}
+            />
+          )}
           {currentStep === 0 && (
             <>
               <PartySizeComponent handlePartySize={handlePartySize} formData={formData} />
@@ -271,8 +284,7 @@ const ConfirmReservation = ({ formData }) => {
   );
 };
 
-const UserInfoForm = ({ userInfoFormRef, form }) => {
-  const { data: session, status } = useSession();
+const UserInfoForm = ({ userInfoFormRef, form, session, status }) => {
   const nameRef = useRef(null);
   const emailRef = useRef(null);
 
