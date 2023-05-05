@@ -5,7 +5,6 @@ import { navState } from "@/atoms";
 import { Dashboard, Reservations, Orders, Menu, Users, Report } from "./contents";
 
 const GetContent = ({ navState }) => {
-  console.log(navState);
   switch (navState) {
     case 0:
       return <Dashboard />;
