@@ -63,7 +63,10 @@ const ReservationForm = () => {
       // get value from userInfoFormRef
       const fd = new FormData(userInfoFormRef.current);
       const diner = Object.fromEntries(fd.entries());
-      setFormData({ ...formData, diner: { ...diner, id: session?.user?.id } });
+      setFormData({
+        ...formData,
+        diner: { ...diner, id: session?.user?.id, image: session?.user.image },
+      });
       increaseStep();
     }
   };

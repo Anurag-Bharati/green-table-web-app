@@ -4,7 +4,7 @@ import DataTable from "react-data-table-component";
 const customStyles = {
   rows: {
     style: {
-      minHeight: "72px", 
+      minHeight: "72px",
       fontSize: "14px",
       padding: "8px",
     },
@@ -102,7 +102,6 @@ const columns = [
 ];
 
 const DataTableComponent = ({ data }) => {
-  console.log(data.map((o) => ({ ...o.data(), id: o.id })));
   const managedData = data
     .map((o) => ({ ...o.data(), id: o.id }))
     .map((order, index) => ({

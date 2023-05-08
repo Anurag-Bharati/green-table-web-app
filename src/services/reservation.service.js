@@ -34,6 +34,7 @@ export const createReservation = async (data) => {
   try {
     const valid = await reservationSchema.validate(data);
     valid.createdAt = serverTimestamp();
+    valid.status = "pending";
     const res = await addDoc(reservationsRef, valid);
     return [res, null];
   } catch (error) {

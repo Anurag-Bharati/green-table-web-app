@@ -6,7 +6,6 @@ import DataTableComponent from "../reuseable/CustomDataTable";
 const Orders = () => {
   const ordersRef = collection(firestore, "orders");
   const [snapshot, loading, error] = useCollection(ordersRef);
-  // console.log(snapshot?.docs.map((order) => order.data()));
   return (
     <div>
       <DataTableComponent data={snapshot?.docs ?? []} />
