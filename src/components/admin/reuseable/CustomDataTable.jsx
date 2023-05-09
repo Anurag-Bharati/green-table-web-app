@@ -111,15 +111,32 @@ const DataTableComponent = ({ data }) => {
       sn: index + 1,
       createdAt: order.createdAt.toDate().toLocaleString(),
     }));
+  console.log(managedData);
   return (
-    <DataTable
-      columns={columns}
-      data={managedData}
-      customStyles={customStyles}
-      pagination
-      paginationPerPage={8} // Adjust the number of rows per page
-      paginationRowsPerPageOptions={[8, 16, 32, 64]}
-    />
+    <div className="flex flex-col gap-4">
+      <p className="text-2xl font-semibold text-gray-700">Pending Orders</p>
+      <div>
+        <DataTable
+          columns={columns}
+          data={managedData.filter((o) => o.status === "pending" || o.status === "processing")}
+          customStyles={customStyles}
+          pagination
+          paginationPerPage={8} // Adjust the number of rows per page
+          paginationRowsPerPageOptions={[8, 16, 32, 64]}
+        />
+      </div>
+      <p className="text-2xl font-semibold text-gray-700">Resolved Orders</p>
+      <div>
+        <DataTable
+          columns={[...columns].slice(0, -1)}
+          data={managedData.filter((o) => o.status === "completed" || o.status === "rejected")}
+          customStyles={customStyles}
+          pagination
+          paginationPerPage={8} // Adjust the number of rows per page
+          paginationRowsPerPageOptions={[8, 16, 32, 64]}
+        />
+      </div>
+    </div>
   );
 };
 

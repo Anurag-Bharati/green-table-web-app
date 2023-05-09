@@ -153,6 +153,100 @@ div {
   background-size: cover;
 }
 
+ul[aria-label="Pagination"] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  padding: 10px;
+  margin: 0;
+}
+ul[aria-label="Pagination"] li {
+  white-space: nowrap;
+  &.selected {
+    a {
+      background: #c0eb75;
+      color: white;
+    }
+  }
+  margin: 0 5px;
+  &:last-child {
+    margin-right: 0;
+  }
+  // disable text selection
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgb(244 244 245);
+    color: black;
+    transition: all 0.3s ease-in-out;
+    vertical-align: middle;
+    &:hover {
+      background: #c0eb75;
+      color: black;
+    }
+    &[rel="prev"] {
+      display: flex;
+      align-items: center;
+      border-radius: 20px;
+      padding: 0 10px;
+    }
+    &[rel="next"] {
+      display: flex;
+      align-items: center;
+      border-radius: 20px;
+      padding: 0 10px;
+    }
+  }
+}
+
+.shimmer {
+  position: relative;
+  background: #efefef;
+  background-image: linear-gradient(
+    to right,
+    #efefef 0%,
+    #fff 10%,
+    #efefef 20%,
+    #fff 30%,
+    #efefef 50%,
+    #fff 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 800px 100%;
+  animation: shimmer 1s infinite ease-in-out forwards;
+  -webkit-animation: shimmer 1s infinite ease-in-out forwards;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -400px 0;
+  }
+  100% {
+    background-position: 400px 0;
+  }
+}
+
+@-webkit-keyframes shimmer {
+  0% {
+    background-position: -400px 0;
+  }
+  100% {
+    background-position: 400px 0;
+  }
+}
+
 @media (min-width: 768px) {
   .review .swiper-pagination {
     text-align: left !important;
