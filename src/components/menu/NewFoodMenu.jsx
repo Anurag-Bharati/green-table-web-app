@@ -1,87 +1,14 @@
 "use client";
 
-import FoodCard from "./FoodCard";
-const foods = [
-  {
-    id: 0,
-    name: "Chicken Burger",
-    price: 200,
-    image: "https://i.imgur.com/kbpceNv.jpg",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-  },
-  {
-    id: 1,
-    name: "Veg Burger",
-    price: 200,
-    image: "https://i.imgur.com/kbpceNv.jpg",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-  },
-  {
-    id: 2,
-    name: "Veg Burger",
-    price: 200,
-    image: "https://i.imgur.com/kbpceNv.jpg",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-  },
-  {
-    id: 3,
-    name: "Veg Burger",
-    price: 200,
-    image: "https://i.imgur.com/kbpceNv.jpg",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-  },
-  {
-    id: 4,
-    name: "Veg Burger",
-    price: 200,
-    image: "https://i.imgur.com/kbpceNv.jpg",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-  },
-  {
-    id: 5,
-    name: "Veg Burger",
-    price: 200,
-    image: "https://i.imgur.com/kbpceNv.jpg",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-  },
-  {
-    id: 6,
-    name: "Veg Burger",
-    price: 200,
-    image: "https://i.imgur.com/kbpceNv.jpg",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-  },
-  {
-    id: 7,
-    name: "Veg Burger",
-    price: 200,
-    image: "https://i.imgur.com/kbpceNv.jpg",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-  },
-  {
-    id: 8,
-    name: "Veg Burger",
-    price: 200,
-    image: "https://i.imgur.com/kbpceNv.jpg",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-  },
-  {
-    id: 9,
-    name: "Veg Burger",
-    price: 200,
-    image: "https://i.imgur.com/kbpceNv.jpg",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-  },
-  {
-    id: 10,
-    name: "Veg Burger",
-    price: 200,
-    image: "https://i.imgur.com/kbpceNv.jpg",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-  },
-];
+import { collection } from "firebase/firestore";
+import FoodCard, { NoFoodCard } from "./FoodCard";
+import { firestore } from "@/config/firebase/firebase";
+import { useCollection } from "react-firebase-hooks/firestore";
 
 const NewFoodMenu = () => {
+  const menuRef = collection(firestore, "menu");
+  const [menu, loading, error] = useCollection(menuRef);
+  const data = menu?.docs.map((doc) => ({ ...doc.data(), id: doc.id })) ?? [];
   return (
     <section className="relative  pt-[2em] md:pt-4 max-w-none  w-full mx-auto overflow-x-hidden">
       <div className="container mx-auto px-4">
@@ -93,7 +20,8 @@ const NewFoodMenu = () => {
             </span>
           </div>
           <div className="flex justify-evenly py-4 sm:py-8 px-2 sm:px-6 sm:flex-wrap flex-col sm:flex-row  border-4 border-[#372b22] max-h-[calc(100vh-15rem)] overflow-y-auto no-scroll-bar">
-            {foods.map((food) => (
+            {data.length === 0 && <NoFoodCard />}
+            {data.map((food) => (
               <FoodCard key={food.id} food={food} />
             ))}
           </div>

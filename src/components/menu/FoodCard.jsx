@@ -2,7 +2,7 @@
 
 import { cartState } from "@/atoms";
 import { useState } from "react";
-import { BiMinusCircle, BiPlusCircle } from "react-icons/bi";
+import { BiCookie, BiMinusCircle, BiPlusCircle } from "react-icons/bi";
 import { useRecoilState } from "recoil";
 
 const FoodCard = ({ food }) => {
@@ -81,6 +81,20 @@ const FoodCard = ({ food }) => {
               <BiPlusCircle />
             </button>
           </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export const NoFoodCard = () => {
+  return (
+    <div className="rounded-md flex gap-2 whitespace-nowrap w-full">
+      <div className="w-full p-3 flex-1  h-[182px]">
+        <div className=" border-4 border-[#372b22] rounded-md h-full w-full border-dashed flex  flex-col justify-center items-center">
+          <BiCookie className="text-3xl" />
+          <div className="text-center text-2xl font-bold"> No Foods To Show</div>
+          <p className="text-xl">Please check back later</p>
         </div>
       </div>
     </div>
