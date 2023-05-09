@@ -12,9 +12,18 @@ import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { cartOpenState, cartState } from "@/atoms";
 import { createOrder } from "@/services/order.service";
+import { doc } from "firebase/firestore";
+import { firestore } from "@/config/firebase/firebase";
+import { useDocument } from "react-firebase-hooks/firestore";
 
 const Navbar = () => {
   const { data: session, status } = useSession();
+
+  // real-time state
+  const userRef = status === "authenticated" ? doc(firestore, "users", session?.user?.id) : null;
+  const [userState, loading, error] = useDocument(userRef);
+  const user = userState?.data();
+
   // common state
   const [leaf, setLeaf] = useState({ count: 0, show: false });
   const [cart, setCart] = useRecoilState(cartState);
@@ -93,7 +102,7 @@ const Navbar = () => {
               className="text-white  focus:ring-4 focus:outline-none  font-medium rounded-lg text-md px-2 py-0.5 text-center mr-3 md:mr-0 bg-[#94d82d] hover:scale-105 focus:ring-lime-300 items-center gap-2 flex"
               onClick={toggleLeafCount}
             >
-              <span className="text-white font-bold text-xl">{leaf.show ? leaf.count : "x"}</span>
+              <span className="text-white font-bold text-xl">{leaf.show ? user?.points : "X"}</span>
               <BiSolidLeaf className="inline-block text-xl text-white" />
             </button>
 
