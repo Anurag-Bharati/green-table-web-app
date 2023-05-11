@@ -4,12 +4,17 @@ import { BiBook, BiCog, BiCookie, BiLogOutCircle, BiRocket } from "react-icons/b
 
 import InfiniteLinearProgressBar from "./InfiniteLinearProgressBar";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const UserOptionsBar = ({ session }) => {
+  const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [open, setOpen] = useState(false);
   const toggleOpen = () => setOpen(!open);
-
+  const hanldeSwitch = (e) => {
+    const path = e.currentTarget.dataset.path;
+    router.push(path ?? "/");
+  };
   useEffect(() => {
     if (!open && loading) return;
     const loadDelay = setTimeout(() => setLoading(false), 3000);
@@ -57,15 +62,27 @@ const UserOptionsBar = ({ session }) => {
             >
               <InfiniteLinearProgressBar small={true} />
             </li>
-            <li className="px-4 py-2 hover:bg-gray-100 cursor-pointe flex items-center gap-2">
+            <li
+              className="px-4 py-2 hover:bg-gray-100 cursor-pointe flex items-center gap-2"
+              onClick={hanldeSwitch}
+              data-path="/profile#my-reservations"
+            >
               <BiBook className="w-5 h-5" />
               <p>My Reservations</p>
             </li>
-            <li className="px-4 py-2 hover:bg-gray-100 cursor-pointe flex items-center gap-2">
+            <li
+              className="px-4 py-2 hover:bg-gray-100 cursor-pointe flex items-center gap-2"
+              onClick={hanldeSwitch}
+              data-path="/profile#my-orders"
+            >
               <BiCookie className="w-5 h-5" />
               <p>My Orders</p>
             </li>
-            <li className="px-4 py-2 hover:bg-gray-100 cursor-pointe flex items-center gap-2">
+            <li
+              className="px-4 py-2 hover:bg-gray-100 cursor-pointe flex items-center gap-2"
+              onClick={hanldeSwitch}
+              data-path="/leaderboard"
+            >
               <BiRocket className="w-5 h-5" />
               <p>Leaderboard</p>
             </li>
