@@ -1,12 +1,11 @@
-import React from "react";
 import { RadarChart, PolarGrid, PolarAngleAxis, Radar, ResponsiveContainer } from "recharts";
 
 const data = [
-  { food: "Food 1", demand: Math.floor(Math.random() * 100) + 50 },
-  { food: "Food 2", demand: Math.floor(Math.random() * 100) + 50 },
-  { food: "Food 3", demand: Math.floor(Math.random() * 100) + 50 },
-  { food: "Food 4", demand: Math.floor(Math.random() * 100) + 50 },
-  { food: "Food 5", demand: Math.floor(Math.random() * 100) + 50 },
+  { food: "Seafood", demand: Math.floor(Math.random() * 100) + 50 },
+  { food: "Extras", demand: Math.floor(Math.random() * 100) + 50 },
+  { food: "Starters", demand: Math.floor(Math.random() * 100) + 50 },
+  { food: "Beverages", demand: Math.floor(Math.random() * 100) + 50 },
+  { food: "Desert", demand: Math.floor(Math.random() * 100) + 50 },
 ];
 
 const FoodDemandRadarChart = () => {
