@@ -49,3 +49,13 @@ export const tableState = atom({
     { id: 10, status: "occupied", name: "2E" },
   ],
 });
+
+export const predictionServiceState = atom({
+  key: "predictionServiceState",
+  default: { state: "loading", health: null },
+});
+
+export const predictionDataState = atom({
+  key: "predictionDataState",
+  default: [],
+});

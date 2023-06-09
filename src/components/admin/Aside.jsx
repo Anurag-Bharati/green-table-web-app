@@ -36,7 +36,7 @@ const Aside = () => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <div className="bg-zinc-800 w-full h-full  rounded-xl">
+      <div className="flex flex-col justify-between bg-zinc-800 w-full h-full  rounded-xl">
         <div className="p-2 flex flex-col gap-2">
           {/* Aside content */}
           <button
@@ -165,6 +165,7 @@ const Aside = () => {
             </span>
           </button>
         </div>
+        <div className="p-6"></div>
       </div>
     </aside>
   );
