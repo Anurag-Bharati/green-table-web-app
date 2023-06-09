@@ -23,9 +23,16 @@ const validationSchema = Yup.object({
 });
 
 const categories = [
-  { label: "Appetizer", value: 1 },
-  { label: "Main Course", value: 2 },
-  { label: "Dessert", value: 3 },
+  { label: "Appetizer", value: 2640 },
+  { label: "Main Course", value: 2290 },
+  { label: "Others", value: 2760 },
+  { label: "Dessert", value: 2492 },
+  { label: "Beverages", value: 2631 },
+  { label: "Fish-Items", value: 2956 },
+  { label: "Seafood", value: 2867 },
+  { label: "Salad", value: 2664 },
+  { label: "Soup", value: 2494 },
+  { label: "Snacks", value: 2760 },
 ];
 
 const initialValues = {
