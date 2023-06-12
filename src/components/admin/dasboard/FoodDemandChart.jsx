@@ -8,6 +8,18 @@ import {
   ResponsiveContainer,
   Text,
 } from "recharts";
+import { CustomTooltip } from "./CustomToolTip";
+
+const colors = [
+  "#8884d8", // Purple
+  "#82ca9d", // Green
+  "#ffc658", // Yellow
+  "#ff7300", // Orange
+  "#007bff", // Blue
+  "#6f42c1", // Indigo
+  "#28a745", // Dark Green
+  "#dc3545", // Red
+];
 
 const CustomTick = ({ x, y, payload }) => {
   if (payload.value === 0) return null; // Hide zero labels
@@ -17,22 +29,44 @@ const CustomTick = ({ x, y, payload }) => {
     </Text>
   );
 };
-
 export const FoodDemandChart = ({ data }) => {
-  // Calculate the chart's width based on sidebar state
+  if (!data || data.length === 0) return null;
+
+  // Calculate the max magnitude for each category
+  const maxMagnitudes = {};
+  data.forEach((entry) => {
+    Object.keys(entry).forEach((key) => {
+      if (key !== "week") {
+        if (!maxMagnitudes[key] || maxMagnitudes[key] < entry[key]) {
+          maxMagnitudes[key] = entry[key];
+        }
+      }
+    });
+  });
+
+  // Sort the foodCategories based on max magnitude (ascending order)
+  const foodCategories = Object.keys(maxMagnitudes).sort(
+    (a, b) => maxMagnitudes[a] - maxMagnitudes[b]
+  );
 
   return (
-    <div className="bg-white rounded-lg p-4 mx-auto" style={{ width: " 98%" }}>
-      <h2 className="text-xl font-medium mb-4">Food Demand Forecast</h2>
-      <ResponsiveContainer width="100%" height={300}>
-        <AreaChart data={data} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+    <div className="bg-white rounded-lg p-4 mx-auto shadow-sm" style={{ width: "98%" }}>
+      <h2 className="text-2xl font-semibold mb-4 text-gray-800">Food Demand Forecast</h2>
+      <ResponsiveContainer width="100%" height={400}>
+        <AreaChart data={data} margin={{ top: 10, right: 30, left: 0, bottom: 20 }}>
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="week" tick={{ fontSize: 16, fontWeight: "medium" }} dy={10} />
+          <XAxis dataKey="week" tick={{ fontSize: 14, fontWeight: "medium" }} dy={10} />
           <YAxis tick={<CustomTick />} />
-          <Tooltip />
-          <Area type="monotone" dataKey="food1" stackId="1" stroke="#8884d8" fill="#8884d8" />
-          <Area type="monotone" dataKey="food2" stackId="1" stroke="#82ca9d" fill="#82ca9d" />
-          <Area type="monotone" dataKey="food3" stackId="1" stroke="#ffc658" fill="#ffc658" />
+          <Tooltip content={<CustomTooltip />} />
+          {foodCategories.reverse().map((category, index) => (
+            <Area
+              key={index}
+              type="monotone"
+              dataKey={category}
+              stroke={colors[index % colors.length]}
+              fill={colors[index % colors.length]}
+            />
+          ))}
         </AreaChart>
       </ResponsiveContainer>
     </div>
