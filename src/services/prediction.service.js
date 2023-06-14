@@ -13,6 +13,6 @@ export const healthCheck = async () => {
     return { state: "loaded", health: response.data };
   } catch (error) {
     console.error("API Error:", error);
-    return null;
+    return { state: "error", health: null };
   }
 };

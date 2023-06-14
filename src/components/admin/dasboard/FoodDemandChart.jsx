@@ -9,6 +9,7 @@ import {
   Text,
 } from "recharts";
 import { CustomTooltip } from "./CustomToolTip";
+import LoadingForecast from "../reuseable/LoadingForecast";
 
 const colors = [
   "#8884d8", // Purple
@@ -30,7 +31,7 @@ const CustomTick = ({ x, y, payload }) => {
   );
 };
 export const FoodDemandChart = ({ data }) => {
-  if (!data || data.length === 0) return null;
+  if (!data || data.length === 0) return <LoadingForecast />;
 
   // Calculate the max magnitude for each category
   const maxMagnitudes = {};

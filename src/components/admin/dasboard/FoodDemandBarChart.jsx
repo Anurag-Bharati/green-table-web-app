@@ -1,5 +1,6 @@
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import { CustomTooltip } from "./CustomToolTip";
+import LoadingForecast from "../reuseable/LoadingForecast";
 const colors = [
   "#8884d8", // Purple
   "#82ca9d", // Green
@@ -11,7 +12,7 @@ const colors = [
   "#dc3545", // Red
 ];
 const FoodDemandBarChart = ({ data }) => {
-  if (!data || data.length === 0) return null;
+  if (!data || data.length === 0) return <LoadingForecast />;
   const foodCategories = Object.keys(data[0]).filter((key) => key !== "week");
 
   return (

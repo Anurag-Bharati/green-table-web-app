@@ -9,6 +9,7 @@ import {
   Legend,
 } from "recharts";
 import { CustomTooltip } from "./CustomToolTip";
+import LoadingForecast from "../reuseable/LoadingForecast";
 
 const colors = [
   "#8884d8", // Purple
@@ -22,7 +23,7 @@ const colors = [
 ];
 
 export const WeeklyLineChart = ({ data }) => {
-  if (!data || data.length === 0) return null;
+  if (!data || data.length === 0) return <LoadingForecast />;
   const dataKeys = Object.keys(data[0]).filter((key) => key !== "week");
 
   return (

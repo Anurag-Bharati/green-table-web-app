@@ -1,5 +1,6 @@
 import React from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from "recharts";
+import LoadingForecast from "../reuseable/LoadingForecast";
 
 const colors = [
   "#8884d8", // Purple
@@ -33,7 +34,7 @@ const CustomTooltip = ({ active, payload, label }) => {
 };
 
 export const CategoryDoughnutChart = ({ data }) => {
-  if (!data || data.length === 0) return null;
+  if (!data || data.length === 0) return <LoadingForecast />;
   const dataKeys = Object.keys(data[0]).filter((key) => key !== "week");
 
   return (

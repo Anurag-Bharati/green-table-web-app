@@ -16,6 +16,7 @@ import {
   ResponsiveContainer,
   Text,
 } from "recharts";
+import LoadingForecast from "../reuseable/LoadingForecast";
 
 const CustomTick = ({ x, y, payload }) => {
   if (payload.value === 0) return null; // Hide zero labels
@@ -44,17 +45,7 @@ const TotalDemandForecast = ({ data, noOfWeeks = defaultNoOfWeeks }) => {
     makePrediction();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [noOfWeeks]);
-  if (chartData.length === 0)
-    return (
-      <div className="w-full h-[372px] px-10 py-8">
-        <div className=" border-dashed rounded-xl border-gray-200 border-2 flex flex-col justify-center items-center p-10 h-full">
-          <p className="text-gray-500 font-bold flex gap-2 items-center uppercase">
-            <BiCircleQuarter className="text-xl  animate-spin" />
-            Requesting Forecast
-          </p>
-        </div>
-      </div>
-    );
+  if (chartData.length === 0) return <LoadingForecast />;
   return (
     <div className="pb-2">
       <h2 className="text-xl font-medium p-4">Weekly Order Forecasts</h2>

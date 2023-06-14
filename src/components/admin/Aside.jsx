@@ -129,7 +129,8 @@ const Aside = () => {
             </span>
           </button>
           <button
-            className={`p-2 rounded-md  hover:bg-zinc-600 flex font-medium ${
+            disabled={true}
+            className={`disabled:opacity-50 p-2 rounded-md  hover:bg-zinc-600 flex font-medium ${
               navSelected === 4 ? "bg-zinc-600" : ""
             }`}
             data-value="4"
