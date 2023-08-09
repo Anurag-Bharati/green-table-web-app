@@ -1,15 +1,23 @@
+"use client";
+
 import { atom } from "recoil";
 
 const localStorageEffect =
   (key) =>
   ({ setSelf, onSet }) => {
-    const savedValue = localStorage.getItem(key);
+    const savedValue = typeof window !== "undefined" ? localStorage.getItem(key) : null;
     if (savedValue != null) {
       setSelf(JSON.parse(savedValue));
     }
 
     onSet((newValue, _, isReset) => {
-      isReset ? localStorage.removeItem(key) : localStorage.setItem(key, JSON.stringify(newValue));
+      isReset
+        ? typeof window !== "undefined"
+          ? localStorage.removeItem(key)
+          : null
+        : typeof window !== "undefined"
+        ? localStorage.setItem(key, JSON.stringify(newValue))
+        : null;
     });
   };
 
