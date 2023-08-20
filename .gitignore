@@ -165,3 +165,6 @@ $RECYCLE.BIN/
 .flaskenv*
 !.env.project
 !.env.vault
+
+// ignore secret files
+*.secret.json
